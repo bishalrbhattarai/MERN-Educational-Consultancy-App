@@ -1,0 +1,18 @@
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+const PublicRoute = ({ element }) => {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    if (Object.keys(user).length > 0 || user.type == "teacher") {
+      navigate("/teacher/dashboard");
+    }
+  }, [user]);
+
+  return <> {element}</>;
+};
+
+export default PublicRoute;
